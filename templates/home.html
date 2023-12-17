@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Bosh sahifa{% endblock title %}
+{% block content %}
+
+    <br/>
+    <div class="jumbotron" style="background: lightgreen">
+        {% if user.is_authenticated %}
+            <h1 class="display-4" style="text-align: center">Assalomu alaykum!</h1>
+            <p class="lead" style="text-align: center">Diyorbek Aliqo'ziyevning blogiga xush kelibsiz</p>
+            <br><hr class="my-4">
+            <p style="text-align: center">Bu yerda har xil yangiliklardan xabardor bo'lasiz</p>
+            <br><br>
+            <p class="lead" style="text-align: center">
+                <a class="btn btn-primary btn-lg" href="{% url 'article_list' %}" role="button">Postlarni ko'rish</a>
+            </p>
+        {% else %}
+            <h2>Saytga kirish</h2>
+            <form method="post">{% csrf_token %}
+                {{form.as_p}}
+                <a class="btn btn-primary" href="{% url 'login' %}" role="button">Kirish</a>
+                <a class="btn btn-primary" href="{% url 'signup' %}" role="button">Ro'yxatdan o'tish</a>
+            </form>
+        {% endif %}
+    </div>
+
+{% endblock content %}
